@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" hidden>
+  <head>
+    <meta content="IE=edge" http-equiv="x-ua-compatible" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1 user-scalable=0"
+      name="viewport"
+    />
+    <meta charset="utf-8" />
+    <title>Keck Medicine of USC</title>
+    <link
+      rel="shortcut icon"
+      href="https://www.keckmedicine.org/ssl/images/favicon.ico"
+      type="image/x-icon"
+      rel="preconnect"
+    />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="dns-prefetch" href="//maps.googleapis.com" />
+    <link rel="preconnect" href="https://maps.googleapis.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      rel="import"
+      type="text/css"
+      href="/search_widget_dist/static/css/search-widget.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cabin:400,500,700|Open+Sans:300,400,600,700|Bitter:100;0,300;1,400;1,600;1,700;1@&display=swap"
+    />
+    <style>
+      html[hidden] {
+        display: none;
+        visibility: hidden;
+      }
+
+      html,
+      body {
+        height: auto;
+      }
+    </style>
+
+    <!-- Salesforce Chatbot CSS Styles -->
+    <style type='text/css'>
+        .embeddedServiceHelpButton .helpButton .uiButton {
+            background-color: #005290;
+            font-family: "Arial", sans-serif;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+            outline: 1px solid #005290;
+        }
+    </style>
+
+    <script src="/search_widget_dist/static/js/react-search-widget.js" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=%REACT_APP_GOOGLE_MAPS_API_KEY%&libraries=places"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <script src="https://healthelife.healtheintent.com/healthelife_sdk.js"></script>
+  <script>
+    $HL.App.init({
+      acls: ['*'],
+      onReady: function() {},
+      targetSelectors: '.modal',
+    });
+  </script>
+
+<!-- Salesforce Chatbot JS Setup -->
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			'https://keckmedicine--devteam.my.salesforce.com',
+			'https://devteam-keckmedicine.cs209.force.com/caremanagementoutreach',
+			gslbBaseURL,
+			'00D740000004ebq',
+			'DevTeam',
+			{
+				baseLiveAgentContentURL: 'https://c.la5-c1cs-ia4.salesforceliveagent.com/content',
+				deploymentId: '572740000004CAz',
+				buttonId: '573740000004CCC',
+				baseLiveAgentURL: 'https://d.la5-c1cs-ia4.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'DevTeam',
+				isOfflineSupportEnabled: false
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://keckmedicine--devteam.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
+</script>
+</html>
